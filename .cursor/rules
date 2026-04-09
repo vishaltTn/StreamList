@@ -1,0 +1,37 @@
+---
+description: StreamListApp repository contract — env, architecture, and AI discipline
+alwaysApply: true
+---
+
+# StreamListApp — Cursor rules
+
+## Secrets and configuration
+
+- Do not hardcode secrets, API keys, tokens, or environment-specific URLs in source code.
+- Do not commit `.env` or other files that contain real credentials; do not paste secrets into docs, issues, or logs.
+- Use environment variables for runtime configuration; document placeholder keys only in `.env.example`.
+
+## Architecture
+
+- Keep the codebase modular and scalable; favor clear boundaries between layers.
+- Do not put API clients, fetch logic, or other side-effectful networking **inside** UI components; use dedicated modules or hooks/services as appropriate for the stack.
+- Prefer feature-based or domain-oriented organization so related code stays together.
+- Before adding a new file or utility, search the repo for an existing place to extend; do not duplicate helpers, components, or patterns that already exist for the same concern.
+- Do not introduce a second pattern for the same problem (e.g. a parallel fetch layer or duplicate state approach) without an ADR that explains why.
+- Keep naming consistent with existing code (casing, prefixes, folder names).
+- Prefer small, focused files over large catch-all modules; split when a file grows hard to navigate.
+
+## Dependencies
+
+- Do not add packages without a concrete need and alignment with existing stack choices.
+- When the project uses a lockfile, pin versions and update the lockfile with dependency changes.
+
+## Decisions and AI workflows
+
+- Material changes to architecture, data flow, or stack (frameworks, auth, deployment) require an entry in `docs/ADR.md` in the same change or immediately after—do not leave significant decisions undocumented.
+- For prompts or agent workflows that should be reusable or auditable, add notes under `prompt-logs/`.
+
+## Defaults
+
+- When unsure, choose clarity and maintainability over cleverness.
+- Match existing patterns in this repository before introducing new conventions.
